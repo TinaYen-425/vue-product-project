@@ -2,6 +2,8 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import Dashboard from "../components/pages/Dashboard.vue";
 import Login from "../components/pages/Login.vue";
 import Products from "../components/pages/Products";
+import Orders from "../components/pages/Orders"
+import Coupons from "../components/pages/Coupons"
 
 const routes = [
   {
@@ -24,21 +26,37 @@ const routes = [
         component: Products,
         meta: { requiresAuth: true },
       },
+      {
+        path: "orders",
+        name: "Orders",
+        component: Orders,
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "coupons",
+        name: "Coupons",
+        component: Coupons,
+        meta: { requiresAuth: true },
+      }
     ],
   },
   // {
-  //   path: '/about',
-  //   name: 'about',
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+  //   path: "/user",
+  //   name: "Userboard",
+  //   component: Userboard,
+  //   children: [
+  //     {
+
+  //     }
+  //   ]
+
   // }
 ];
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+  linkActiveClass: 'active'
 });
 
 export default router;
