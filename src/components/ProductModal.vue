@@ -49,6 +49,7 @@
                     id="customFile"
                     class="form-control"
                     ref="fileInput"
+                    placeholder="更換"
                     @change="uploadFile"
                   />
                 </div>
@@ -216,6 +217,7 @@ export default {
           this.tempProduct.imageUrl = response.data.imageUrl
         }
       });
+      this.tempProduct.imageUrl = '';
     },
   },
   mixins: [modalMixin],

@@ -12,7 +12,8 @@
         <div class="modal-content border-0">
           <div class="modal-header bg-danger text-white">
             <h5 class="modal-title" id="exampleModalLabel">
-              <span>刪除項目 {{item.title}}</span>
+              刪除<slot>產品</slot> 
+              <div class="text-warning d-inline-block ms-1">{{item.title}}</div>
             </h5>
             <button
               type="button"
@@ -26,7 +27,7 @@
           <div class="modal-body">
             是否刪除
             <strong class="text-danger">{{ item.title }}</strong>
-            的項目(刪除後將無法恢復)。
+            的<slot>產品</slot>(刪除後將無法恢復)。
           </div>
           <div class="modal-footer">
             <button

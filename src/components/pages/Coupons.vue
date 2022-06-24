@@ -71,7 +71,9 @@
     :coupon="tempCoupon"
     @update-coupon="updateCoupon"
   ></CouponModal>
-  <DelModal ref="delModal" @del-item="delCoupon" :item="tempCoupon"></DelModal>
+  <DelModal ref="delModal" @del-item="delCoupon" :item="tempCoupon">
+  <span>優惠卷</span>
+  </DelModal>
 </template>
 
 <script>
