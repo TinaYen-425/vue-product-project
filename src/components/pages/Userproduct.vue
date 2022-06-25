@@ -45,7 +45,9 @@
 export default {
   data() {
     return {
-      product: {},
+      product: {
+        imageUrl: ''
+      },
       isLoading: false,
       id: '',
     };
