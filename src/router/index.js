@@ -5,8 +5,9 @@ import Products from "../components/pages/Products";
 import Orders from "../components/pages/Orders";
 import Coupons from "../components/pages/Coupons";
 import Userboard from "../components/pages/Userboard";
-import Usercart from "../components/pages/Usercart"
-import Userproduct from "../components/pages/Userproduct"
+import Usercart from "../components/pages/Usercart";
+import Userproduct from "../components/pages/Userproduct";
+import UserCheckout from "../components/pages/UserCheckout"
 
 const routes = [
   {
@@ -58,6 +59,11 @@ const routes = [
         name: "UserProduct",
         component: Userproduct,
       },
+      {
+        path: 'checkout/:orderId',
+        name: UserCheckout,
+        component: UserCheckout,
+      }
     ]
 
   }

@@ -108,6 +108,7 @@ export default {
       }
       const vm = this;
       const productComponent = this.$refs.productModal;
+      console.log(vm.tempProduct)
       this.$http[httpMethod](api, { data: vm.tempProduct }).then(response => {
         productComponent.hideModal();
           this.getProducts()

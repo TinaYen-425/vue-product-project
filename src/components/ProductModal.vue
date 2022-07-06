@@ -50,7 +50,7 @@
                     class="form-control"
                     ref="fileInput"
                     placeholder="更換"
-                    @change="uploadFile"
+                    @change="uploadFile($event)"
                   />
                 </div>
                 <img
@@ -206,7 +206,7 @@ export default {
     };
   },
   methods: {
-    uploadFile() {
+    uploadFile(e) {
       const uploadFile = this.$refs.fileInput.files[0];
       const formData = new FormData();
       formData.append('file-to-upload', uploadFile)
@@ -215,6 +215,7 @@ export default {
       this.$http.post(api, formData).then(response => {
         if (response.data.success){
           this.tempProduct.imageUrl = response.data.imageUrl
+          e.target.value=""
         }
       });
       this.tempProduct.imageUrl = '';

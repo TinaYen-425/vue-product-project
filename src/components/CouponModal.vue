@@ -43,15 +43,15 @@
                     v-model="tempCoupon.title"
                   />
                 </div>
-                <div class="form-row">
+                                <div class="form-row">
                   <div class="form-group col-md-6 mb-2">
-                    <label for="discount">折扣百分比</label>
+                    <label for="code">優惠碼</label>
                     <input
-                      type="number"
+                      type="text"
                       class="form-control"
-                      id="discount"
+                      id="code"
                       placeholder="折扣"
-                      v-model="tempCoupon.percent"
+                      v-model="tempCoupon.code"
                     />
                   </div>
                   <div class="form-group col-md-6 mb-2">
@@ -61,7 +61,19 @@
                       class="form-control"
                       id="due"
                       placeholder="期限"
-                      v-model="due_date"
+                      v-model="tempCoupon.due_date"
+                    />
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label for="discount">折扣百分比</label>
+                    <input
+                      type="percent"
+                      class="form-control"
+                      id="discount"
+                      placeholder="折扣"
+                      v-model="tempCoupon.percent"
                     />
                   </div>
                 </div>
@@ -130,10 +142,17 @@ export default {
   watch: {
     coupon() {
       this.tempCoupon = this.coupon;
+      if(this.tempCoupon.due_date.split('-')[1] < 10) {
+        this.tempCoupon.due_date = this.tempCoupon.due_date.split('-')[0] + '-0' + this.tempCoupon.due_date.split('-')[1] + '-' + this.tempCoupon.due_date.split('-')[2]
+      }
+      if(this.tempCoupon.due_date.split('-')[2] < 10) {
+        this.tempCoupon.due_date = this.tempCoupon.due_date.split('-')[0] + '-' + this.tempCoupon.due_date.split('-')[1] + '-0' + this.tempCoupon.due_date.split('-')[2]
+      }
     }, //因為每次傳送的資料不太一樣，所以我們要去監聽coupon的內容有沒有更動。因此必須要設立watch將傳進來的資料this.product傳進tempProduct裡。
     //時間格式調整
-    due_date() {
-      this.tempCoupon.due_date = Math.floor(new Date(this.due_date) / 1000);
+   tempCoupon() {
+      this.tempCoupon.due_date = Math.floor(new Date(this.tempCoupon.due_date)/ 1000);
+      // 轉換格式要再調整
     },
   },
   methods: {},

@@ -10,6 +10,7 @@
       <thead>
         <tr>
           <th width="150">名稱</th>
+          <th width="150">折扣碼</th>
           <th width="180">折扣百分比</th>
           <th width="180">到期日</th>
           <th width="120">是否啟用</th>
@@ -20,6 +21,7 @@
       <tbody>
         <tr v-for="(item, key) in coupons" :key="key">
           <td>{{ item.title }}</td>
+          <td>{{ item.code }}</td>
           <td>{{ item.percent }}%</td>
           <td>{{ date(item.due_date) }}</td>
           <td>
@@ -107,6 +109,7 @@ export default {
       const vm = this;
       this.$http.get(api).then(response => {
         this.isLoading = false
+        console.log(response)
         vm.coupons = response.data.coupons;
         vm.pagination = response.data.pagination;
       });
@@ -137,7 +140,10 @@ export default {
       if (isNew) {
         this.tempCoupon = {};
       } else {
-        this.tempCoupon = { ...item };
+        this.tempCoupon = { 
+          ...item,
+          due_date: this.$filters.date(item.due_date).replace('/', '-').replace('/', '-')
+         };
       }
       const couponComponent = this.$refs.couponModal;
       couponComponent.showModal();
